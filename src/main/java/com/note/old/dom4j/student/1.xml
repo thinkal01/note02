@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<person xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.example.org/1111"
+        xsi:schemaLocation="http://www.example.org/1111 1.xsd">
+    <man>
+        <name>111</name>
+        <age>111</age>
+    </man>
+</person>

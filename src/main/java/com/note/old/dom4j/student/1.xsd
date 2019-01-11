@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.example.org/1111"
+        elementFormDefault="qualified">
+    <element name="person">
+        <complexType>
+            <sequence>
+                <element name="man">
+                    <complexType>
+                        <sequence>
+                            <element name="name" type="string"></element>
+                            <element name="age" type="string"></element>
+                        </sequence>
+                    </complexType>
+                </element>
+            </sequence>
+        </complexType>
+    </element>
+</schema>

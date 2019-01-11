@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<person 	xmlns = "http://www.xxx.org/MySchema11"
+					xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+					xsi:schemaLocation="http://www.xxx.org/MySchema11 MySchema1.xsd">	
+	<man> 
+		<name>zhangsan</name>
+		<age>20</age>
+	</man> 
+	
+	<man>
+		<name>wangwu</name>
+		<age>20</age>
+	</man>
+</person>

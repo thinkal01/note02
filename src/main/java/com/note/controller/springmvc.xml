@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <!-- 配置处理器映射器,springmvc默认的处理器映射器
+    BeanNameUrlHandlerMapping：根据bean(自定义Controler)的name属性的url去寻找hanler(Action:Controller)
+     -->
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
+
+    <!-- 简单处理器映射器：
+         把Url进行集中配置
+     -->
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/abc.do">myController</prop>
+                <prop key="/ss.do">http</prop>
+                <prop key="/mine.do">http</prop>
+            </props>
+        </property>
+
+    </bean>
+
+    <!-- 定义通过: 类名.do 形式来访问controller -->
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"></bean>
+
+    <!-- 配置处理器适配器执行Controlelr ,springmvc默认的
+    SimpleControllerHandlerAdapter:执行Controller
+    -->
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean>
+
+    <!-- HttpRequestHandlerAdapter负责执行实现接口HttpRequestHandler的后端控制器。-->
+    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"></bean>
+
+    <!-- 配置自定义Controler -->
+    <bean id="myController" name="/hello.do" class="cn.itcast.controller.MyController"></bean>
+
+    <!-- 配置自定义HttpController -->
+    <bean id="http" class="cn.itcast.controller.HttpController"></bean>
+
+    <!-- 配置sprigmvc视图解析器：解析逻辑试图
+         后台返回逻辑试图：index
+        视图解析器解析出真正物理视图：前缀+逻辑试图+后缀====/WEB-INF/jsps/index.jsp
+    -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsps/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+</beans>

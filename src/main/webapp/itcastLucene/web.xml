@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+    <display-name>note02</display-name>
+
+    <!--itcast lucene-->
+    <listener>
+        <listener-class>com.note.common.lucene.itcast.listener.StartReptileListener</listener-class>
+    </listener>
+    <filter>
+        <filter-name>charset</filter-name>
+        <filter-class>com.note.common.lucene.itcast.filter.CharSetFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>charset</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>query</servlet-name>
+        <servlet-class>com.note.common.lucene.itcast.servlet.SearchServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>query</servlet-name>
+        <url-pattern>/query</url-pattern>
+    </servlet-mapping>
+    <!--itcast lucene-->
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

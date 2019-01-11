@@ -1,0 +1,34 @@
+##create bean serviceImpl,this is a class
+package $!{bean.beanServiceImplUrl};
+
+import com.blackants.core.service.impl.AbstractBaseServiceImpl;
+import com.blackants.core.dao.BaseDao;
+import $!{bean.beanDaoUrl}.$!{bean.name}Dao;
+import $!{bean.beanServiceUrl}.$!{bean.name}Service;
+import $!{bean.beanUrl};
+
+/**
+ * @author <a href="mailto:$!{annotation.authorMail}">$!{annotation.authorName}</a>
+ * @date $!{annotation.date}
+ *
+ * @version $!{annotation.version}
+ */
+public class $!{bean.name}ServiceImpl extends AbstractBaseServiceImpl<$!{bean.name}> implements $!{bean.name}Service{
+
+	/**
+	 * $!{bean.lowerName} Dao
+	 */
+	private $!{bean.name}Dao $!{bean.lowerName}Dao;
+	
+	@Override
+	public BaseDao<$!{bean.name}> getBaseDao() {
+		return $!{bean.lowerName}Dao;
+	}
+
+	// =================setter================= //
+	
+	public void setActivationCodeDao($!{bean.name}Dao $!{bean.lowerName}Dao) {
+		this.$!{bean.lowerName}Dao = $!{bean.lowerName}Dao;
+	}
+	
+}

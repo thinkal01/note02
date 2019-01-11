@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+    <!-- 配置自定扫描的包 -->
+    <context:component-scan base-package="com.note.common.freemarker"/>
+
+    <!-- 整合Freemarker -->
+    <!-- 放在InternalResourceViewResolver的前面，优先找freemarker -->
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/freemarker/views/templates"/>
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="template_update_delay">0</prop>
+                <prop key="default_encoding">UTF-8</prop>
+                <prop key="number_format">0.##########</prop>
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                <prop key="classic_compatible">true</prop>
+                <prop key="template_exception_handler">ignore</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="prefix" value=""/>
+        <property name="suffix" value=".ftl"/>
+        <property name="contentType" value="text/html; charset=UTF-8"/>
+    </bean>
+
+    <!-- 配置视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/freemarker/views/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    <!-- 配置注解驱动 -->
+    <mvc:annotation-driven/>
+
+    <!-- 配置视图 BeanNameViewResolver 解析器
+        使用视图的名字来解析视图
+        通过 order 属性来定义视图解析器的优先级, order 值越小优先级越高
+    -->
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <property name="order" value="100"></property>
+    </bean>
+
+    <!-- 配置直接跳转的页面，无需经过Controller层
+        http://localhost:8080/springmvc/index
+        然后会跳转到 WEB-INF/views/index.jsp 页面
+    -->
+    <mvc:view-controller path="/index.action" view-name="index"/>
+
+    <!--
+        default-servlet-handler 将在 SpringMVC 上下文中定义一个 DefaultServletHttpRequestHandler,
+        它会对进入 DispatcherServlet 的请求进行筛查, 如果发现是没有经过映射的请求, 就将该请求交由 WEB 应用服务器默认的
+        Servlet 处理. 如果不是静态资源的请求，才由 DispatcherServlet 继续处理
+
+        一般 WEB 应用服务器默认的 Servlet 的名称都是 default.
+        若所使用的 WEB 服务器的默认 Servlet 名称不是 default，则需要通过 default-servlet-name 属性显式指定
+    -->
+    <mvc:default-servlet-handler/>
+
+    <!-- 配置国际化资源文件 -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="i18n"></property>
+    </bean>
+
+    <!-- 配置 SessionLocaleResolver 根据 Session 中特定属性确定本地化类型
+        必须将区域解析器的Bean名称设置为localeResolver，这样DispatcherServlet才能自动侦测到它。
+        请注意，每DispatcherServlet只能注册一个区域解析器。
+     * 第一步，把Locale对象设置为Session属性
+     * 第二步，从Session中获取Locale对象给应用程序
+    -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
+
+    <!-- 配置 LocaleChangeInterceptor 从请求参数中获取本次请求对应本地化类型
+     * 第一步，获取name=locale的请求参数
+     * 第二步，把locale的请求参数解析为Locale对象
+     * 第三步，获取LocaleResolver对象
+    -->
+    <mvc:interceptors>
+        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"></bean>
+    </mvc:interceptors>
+
+    <!-- 配置 CommonsMultipartResolver -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <property name="maxUploadSize" value="2048000"></property>
+    </bean>
+
+    <!-- 配置使用 SimpleMappingExceptionResolver 来映射异常 -->
+    <bean id="simpleMappingExceptionResolver"
+          class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <!-- 这里是模型 exception -->
+        <property name="exceptionAttribute" value="exception"></property>
+        <property name="exceptionMappings">
+            <props>
+                <!-- 如果是该异常，则跳转到视图 exception 页面-->
+                <prop key="java.lang.ArrayIndexOutOfBoundsException">exception</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

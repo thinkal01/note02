@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE person SYSTEM "1.dtd"> -->
+<!DOCTYPE person [
+        <!ELEMENT person (name+,age?,sex*,school,birthday)>
+        <!ELEMENT name (#PCDATA)>
+        <!ATTLIST name ID3 ID  #REQUIRED>
+
+        <!ELEMENT age (#PCDATA)>
+        <!ATTLIST age ID2 (AA|BB|CC)  #REQUIRED>
+
+        <!ELEMENT sex  (#PCDATA)>
+        <!ATTLIST sex ID4 CDATA #FIXED "ABC">
+
+        <!ELEMENT school  (#PCDATA)>
+        <!ATTLIST school ID5 CDATA "WWW">
+
+        <!ELEMENT birthday (#PCDATA)>
+
+        <!ATTLIST birthday ID1 CDATA #IMPLIED>
+
+        <!ENTITY TEST "HAHAHEHE">
+        ]>
+<person>
+    <name ID3="A1">&TEST;</name>
+    <age ID2="CC">20</age>
+    <sex ID4="ABC">111</sex>
+    <school ID5="TTT">1111</school>
+    <birthday>2015</birthday>
+</person>

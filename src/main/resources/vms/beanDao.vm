@@ -1,0 +1,15 @@
+##create bean dao,this is a interface
+package $!{bean.beanDaoUrl};
+
+import com.blackants.core.dao.BaseDao;
+import $!{bean.beanUrl};
+
+/**
+ * @author <a href="mailto:$!{annotation.authorMail}">$!{annotation.authorName}</a>
+ * @date $!{annotation.date}
+ *
+ * @version $!{annotation.version}
+ */
+public interface $!{bean.name}Dao extends BaseDao<$!{bean.name}> {
+
+}

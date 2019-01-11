@@ -1,0 +1,15 @@
+##create bean service,this is a interface
+package $!{bean.beanServiceUrl};
+
+import com.blackants.core.service.BaseService;
+import $!{bean.beanUrl};
+
+/**
+ * @author <a href="mailto:$!{annotation.authorMail}">$!{annotation.authorName}</a>
+ * @date $!{annotation.date}
+ *
+ * @version $!{annotation.version}
+ */
+public interface $!{bean.name}Service extends BaseService<$!{bean.name}> {
+
+}

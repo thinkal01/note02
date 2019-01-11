@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE TVSCHEDULE SYSTEM "E:\Java\workspace\git\note01\note01\src\main\java\com\note\acer\jaxp\TV.dtd">
+<TVSCHEDULE NAME="CCTV">
+    <CHANNEL CHAN="CCCC">
+        <BANNER>aaaa</BANNER>
+        <DAY>
+            <DATE>2015-11-11</DATE>
+            <HOLIDAY>xxxxx</HOLIDAY>
+        </DAY>
+        <DAY>
+            <DATE>2015-12-12</DATE>
+            <PROGRAMSLOT VTR="SSSS">
+                <TIME>1990</TIME>
+                <TITLE>test</TITLE>
+            </PROGRAMSLOT>
+        </DAY>
+    </CHANNEL>
+</TVSCHEDULE>

@@ -1,0 +1,16 @@
+##create bean daoImpl,this is a class
+package $!{bean.beanDaoImplUrl};
+
+import com.blackants.core.dao.impl.AbstractBaseDaoImpl;
+import $!{bean.beanDaoUrl}.$!{bean.name}Dao;
+import $!{bean.beanUrl};
+
+/**
+ * @author <a href="mailto:$!{annotation.authorMail}">$!{annotation.authorName}</a>
+ * @date $!{annotation.date}
+ *
+ * @version $!{annotation.version}
+ */
+public class $!{bean.name}DaoImpl extends AbstractBaseDaoImpl<$!{bean.name}> implements $!{bean.name}Dao{
+
+}
