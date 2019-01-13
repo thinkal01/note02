@@ -1,7 +1,5 @@
 package com.note.base.netty.xtwy.netty;
 
-import com.note.base.netty.xtwy.netty.codec.MyEncode;
-import com.note.base.netty.xtwy.netty.constants.CommonConstant;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFuture;
@@ -43,12 +41,35 @@ public class DiscardClient {
 
     public static Object startClient(int obj) throws Exception {
         ChannelFuture f = b.connect("localhost", 8999).sync();
-//		     f.channel().attr(AttributeKey.valueOf(CommonConstant.ATTRIBUTE_KEY)).set(obj);
-//		     ByteBuf buf = allocator.buffer().writeInt(obj);
-//		     ByteBuf buf = allocator.buffer().writeBytes("hhllo".getBytes("UTF-8"));
-        f.channel().writeAndFlush("hello");
+        //f.channel().attr(AttributeKey.valueOf(CommonConstant.ATTRIBUTE_KEY)).set(obj);
+        //ByteBuf buf = allocator.buffer().writeInt(obj);
+        //ByteBuf buf = allocator.buffer().writeBytes("hhllo".getBytes("UTF-8"));
+        f.channel().writeAndFlush("你好啊");
         f.channel().closeFuture().sync();
         return f.channel().attr(AttributeKey.valueOf(CommonConstant.ATTRIBUTE_KEY)).get();
     }
 
+    public static void main(String[] args) throws Exception {
+        for (int i = 0; i < 1; i++) {
+            long start = System.currentTimeMillis();
+            Object obj = DiscardClient.startClient(1);
+            if (obj == null) {
+                throw new RuntimeException("返回数据为空");
+            }
+            System.out.println(obj);
+            long end = System.currentTimeMillis();
+            System.out.println("第" + i + "循环耗时" + (end - start) + "ms");
+        }
+
+        for (int i = 0; i < 1; i++) {
+            long start = System.currentTimeMillis();
+            Object obj = DiscardClient.startClient(1);
+            if (obj == null) {
+                throw new RuntimeException("返回数据为空");
+            }
+            System.out.println(obj);
+            long end = System.currentTimeMillis();
+            System.out.println("第" + i + "循环耗时" + (end - start) + "ms");
+        }
+    }
 }

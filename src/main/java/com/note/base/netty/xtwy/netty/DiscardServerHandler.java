@@ -13,25 +13,21 @@ public class DiscardServerHandler extends ChannelHandlerAdapter {
     }
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg)
-            throws Exception {
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        // ByteBuf buf = (ByteBuf) msg;
+        // byte[] req = new byte[buf.readableBytes()];
+        // buf.readBytes(req);
+        // String body = new String(req, "UTF-8");
+        // int s = 0;
+        // while (buf.isReadable()) { // (1)
+        //     s = buf.readInt();
+        //     System.out.println(s);
+        // }
+        // ByteBuf wbuf = allocator.buffer().writeBytes(("I have recieve" + msg + "\r\n").getBytes("utf-8"));
 
-//		ByteBuf buf = (ByteBuf)msg;
-//		byte[] req = new byte[buf.readableBytes()];
-//		buf.readBytes(req);
-//		String body = new String(req,"UTF-8");
-//		int s = 0;
-//		 while (buf.isReadable()) { // (1)
-//			     s = buf.readInt();
-//	             System.out.println(s);
-//	        }
-
-
-//		ByteBuf wbuf = allocator.buffer().writeBytes(("I have recieve"+msg+"\r\n").getBytes("utf-8"));
-//		
         System.out.println(msg);
-        //处理业务代码
-        String result = "I have recieve" + msg;
+        // 处理业务代码
+        String result = "我接收到了:" + msg;
         ctx.writeAndFlush(result);
     }
 

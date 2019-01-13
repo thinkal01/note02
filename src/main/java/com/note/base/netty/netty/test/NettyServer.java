@@ -26,7 +26,6 @@ public class NettyServer {
                             @Override
                             protected void messageReceived(ChannelHandlerContext channelHandlerContext, String s) throws Exception {
                                 System.out.println(s);
-
                             }
                         });
                     }
