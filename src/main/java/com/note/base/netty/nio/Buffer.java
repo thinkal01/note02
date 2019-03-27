@@ -3,6 +3,8 @@ package com.note.base.netty.nio;
 import org.junit.Test;
 
 import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
+import java.security.SecureRandom;
 
 /*
  * 一、缓冲区（Buffer）：在 Java NIO 中负责数据的存取。缓冲区就是数组。用于存储不同数据类型的数据
@@ -151,5 +153,66 @@ public class Buffer {
         //分配直接缓冲区
         ByteBuffer buf = ByteBuffer.allocateDirect(1024);
         System.out.println(buf.isDirect());
+    }
+
+    @Test
+    public void test4() {
+        IntBuffer buffer = IntBuffer.allocate(10);
+        for (int i = 0; i < buffer.capacity(); ++i) {
+            // 生成的随机数随机性更好
+            int nextInt = new SecureRandom().nextInt(20);
+            buffer.put(nextInt);
+        }
+        buffer.flip();
+        while (buffer.hasRemaining()) {
+            System.out.println(buffer.get());
+        }
+    }
+
+    @Test
+    public void test5() {
+        ByteBuffer buffer = ByteBuffer.allocate(64);
+        buffer.putInt(10);
+        buffer.putDouble(3.14);
+        buffer.putChar('我');
+        buffer.flip();
+        System.out.println(buffer.getInt());
+        System.out.println(buffer.getDouble());
+        System.out.println(buffer.getChar());
+    }
+
+    // slice buffer
+    @Test
+    public void test6() {
+        ByteBuffer buffer = ByteBuffer.allocate(10);
+        for (int i = 0; i < buffer.capacity(); ++i) {
+            buffer.put((byte) i);
+        }
+        buffer.position(2);
+        buffer.limit(6);
+        // 共享底层数组,修改相互可见,position,limit不共享
+        ByteBuffer sliceBuffer = buffer.slice();
+
+        for (int i = 0; i < sliceBuffer.capacity(); ++i) {
+            byte b = sliceBuffer.get(i);
+            b *= 2;
+            sliceBuffer.put(i, b);
+        }
+
+        buffer.position(0);
+        buffer.limit(buffer.capacity());
+        while (buffer.hasRemaining()) {
+            System.out.println(buffer.get());
+        }
+    }
+
+    @Test
+    public void test7() {
+        ByteBuffer buffer = ByteBuffer.allocate(10);
+        for (int i = 0; i < buffer.capacity(); ++i) {
+            buffer.put((byte) i);
+        }
+        // 只读buffer
+        ByteBuffer readOnlyBuffer = buffer.asReadOnlyBuffer();
     }
 }
