@@ -1,0 +1,12 @@
+package com.note.base.jvm.classloader;
+
+/**
+ * Created by zhouyilin on 2018/4/29.
+ */
+public class Test18 {
+    public static void main(String[] args) {
+        System.out.println(System.getProperty("sun.boot.class.path"));
+        System.out.println(System.getProperty("java.ext.dirs"));
+        System.out.println(System.getProperty("java.class.path"));
+    }
+}
