@@ -227,6 +227,16 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
             <version>${springframework.version}</version>
         </dependency>
@@ -375,13 +385,13 @@
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
             <version>5.0.0.Alpha2</version>
-            <!-- <version>4.1.24.Final</version> -->
+            <!--<version>4.1.32.Final</version>-->
         </dependency>
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-codec-http</artifactId>
             <version>5.0.0.Alpha2</version>
-            <!-- <version>4.1.24.Final</version> -->
+            <!--<version>4.1.32.Final</version>-->
         </dependency>
         <dependency>
             <groupId>com.google.protobuf</groupId>

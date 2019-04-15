@@ -35,7 +35,7 @@ public class Array01 {
         //定义一个数组
         int[] arr = new int[8];
 
-        //通过观察这个代码，我们发现应该是可以通过循环改进的
+        //通过循环改进的
         int index = 0;
         while (number > 0) {
             arr[index] = number % 10;
@@ -53,6 +53,8 @@ public class Array01 {
         // 不要同时动态和静态进行
         // int[] arr = new int[3]{1,2,3};
     }
+
+
 
     @Test
     public void testArrayCopy() {

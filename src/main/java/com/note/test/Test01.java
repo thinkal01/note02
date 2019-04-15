@@ -5,16 +5,15 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-
-import static org.junit.Assert.fail;
+import java.util.Collection;
 
 public class Test01 {
 
     @Test
     public void test() throws Exception {
-        fail("Not yet implemented");
-
-
+        // fail("Not yet implemented");
+        int[] i = new int[10];
+        i[0] = 1;
     }
 
     @Test
@@ -45,5 +44,24 @@ public class Test01 {
         //执行回调操作的方法
         void execute();
     }
-}
 
+    public static void main(String[] args) {
+        //GBK编码格式源码路径
+        String srcDirPath = "G:\\Files\\百度云\\spring源码深度解析\\课件\\代码\\springmvc-annotation\\src\\main\\java\\com";
+        //转为UTF-8编码格式源码路径
+        String utf8DirPath = "G:\\Files\\百度云\\spring源码深度解析\\课件\\代码\\springmvc-annotation\\src\\main\\java\\com-utf8";
+        //获取所有java文件
+        Collection<File> javaGbkFileCol = FileUtils.listFiles(new File(srcDirPath), new String[]{"java"}, true);
+        for (File javaGbkFile : javaGbkFileCol) {
+            //UTF8格式文件路径
+            String utf8FilePath = utf8DirPath + javaGbkFile.getAbsolutePath().substring(srcDirPath.length());
+            //使用GBK读取数据，然后用UTF-8写入数据
+            try {
+                FileUtils.writeLines(new File(utf8FilePath), "UTF-8", FileUtils.readLines(javaGbkFile, "GBK"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+}

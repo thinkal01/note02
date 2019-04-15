@@ -3,6 +3,7 @@ package com.note.util;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -14,6 +15,7 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
@@ -88,7 +90,7 @@ public final class HttpClient {
         String result = "";
         Class cls = obj.getClass();
         Field[] fields = cls.getDeclaredFields();
-        List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+        List<BasicNameValuePair> params = new ArrayList<>();
 
         String fieldName = null;
         String fieldNameUpper = null;
@@ -310,5 +312,33 @@ public final class HttpClient {
             e.printStackTrace();
         }
         return result;
+    }
+
+    /**
+     * post+json 请求
+     * @param url
+     * @param json
+     */
+    public static JSONObject doPost(String url, JSONObject json) {
+        CloseableHttpClient httpclient = HttpClientBuilder.create().build();
+        HttpPost post = new HttpPost(url);
+        JSONObject response = null;
+
+        try {
+            StringEntity s = new StringEntity(json.toString());
+            s.setContentEncoding("UTF-8");
+            //发送json数据需要设置contentType
+            s.setContentType("application/json");
+            post.setEntity(s);
+            HttpResponse res = httpclient.execute(post);
+            if (res.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                String result = EntityUtils.toString(res.getEntity());// 返回json格式：
+                response = JSON.parseObject(result);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return response;
     }
 }
