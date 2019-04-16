@@ -114,7 +114,6 @@ public class Trans2JSONObjArr {
         });
         System.out.println(list2.get(0));
         System.out.println(list2.get(1));
-
     }
 
     /**

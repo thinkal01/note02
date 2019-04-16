@@ -7,7 +7,10 @@ package com.note.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DateUtil {
     private static final String PATTERN_DATE = "yyyy-MM-dd";
@@ -357,18 +360,24 @@ public class DateUtil {
     }
 
     /**
-     * 计算两个日期间相隔的日子,按小时计算
+     * 计算两个日期间相隔的日子,按小时计算(有问题?)
      *
      * @param dates1 格式:2005-06-20
      * @param dates2 格式:2005-06-21
      */
     public static int diffDate(String dates1, String dates2) {
         String[] tt = dates1.split("-");
-        GregorianCalendar firstCalendar = new GregorianCalendar(Integer.parseInt(tt[0]) + 1900, Integer.parseInt(tt[1]) - 1, Integer.parseInt(tt[2]));
+        Date date1 = new Date(Integer.parseInt(tt[0])-1900, Integer.parseInt(tt[1]) - 1, Integer.parseInt(tt[2]));
+        // GregorianCalendar firstCalendar = new GregorianCalendar(Integer.parseInt(tt[0]) + 1900, Integer.parseInt(tt[1]) - 1, Integer.parseInt(tt[2]));
+        // GregorianCalendar firstCalendar = new GregorianCalendar(Integer.parseInt(tt[0]) , Integer.parseInt(tt[1]) - 1, Integer.parseInt(tt[2]));
 
         tt = dates2.split("-");
-        GregorianCalendar nextCalendar = new GregorianCalendar(Integer.parseInt(tt[0]) + 1900, Integer.parseInt(tt[1]) - 1, Integer.parseInt(tt[2]));
-        return (int) (nextCalendar.getTimeInMillis() - firstCalendar.getTimeInMillis()) / (24 * 60 * 60 * 1000);
+        Date date2 = new Date(Integer.parseInt(tt[0])-1900, Integer.parseInt(tt[1]) - 1, Integer.parseInt(tt[2]));
+        // GregorianCalendar nextCalendar = new GregorianCalendar(Integer.parseInt(tt[0]) + 1900, Integer.parseInt(tt[1]) - 1, Integer.parseInt(tt[2]));
+        // GregorianCalendar nextCalendar = new GregorianCalendar(Integer.parseInt(tt[0]) , Integer.parseInt(tt[1]) - 1, Integer.parseInt(tt[2]));
+        // return (int) (nextCalendar.getTimeInMillis() - firstCalendar.getTimeInMillis()) / (24 * 60 * 60 * 1000);
+        long l = date2.getTime() - date1.getTime();
+        return (int) l / (24 * 60 * 60 * 1000);
     }
 
     /**
