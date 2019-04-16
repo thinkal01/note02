@@ -48,6 +48,7 @@ public class Client4HelloWorld {
         this.bootstrap.handler(new ChannelInitializer<SocketChannel>() {
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
+                //管道
                 ch.pipeline().addLast(handlers);
             }
         });

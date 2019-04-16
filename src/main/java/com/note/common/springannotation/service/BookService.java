@@ -1,9 +1,8 @@
 package com.note.common.springannotation.service;
 
 import com.note.common.springannotation.dao.BookDao;
+import com.sun.jersey.spi.inject.Inject;
 import org.springframework.stereotype.Service;
-
-import javax.inject.Inject;
 
 @Service
 public class BookService {

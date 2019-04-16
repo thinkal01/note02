@@ -1,0 +1,7 @@
+option java_package = "com.note.base.netty.netty.pb.protocol";
+option java_outer_classname = "RequestMsgProbuf";
+  
+message  RequestMsg {
+    required string cmd = 1;
+    required bytes requestParam = 2;
+}

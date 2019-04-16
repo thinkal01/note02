@@ -152,8 +152,13 @@ public class NIOServer implements Runnable {
             // 是将Buffer中的有效数据保存到字节数组中。
             readBuffer.get(datas);
             System.out.println("from " + channel.getRemoteAddress() + " client : " + new String(datas, "UTF-8"));
-            // 注册通道， 标记为写操作。
+            // 注册通道，标记为写操作。
             channel.register(selector, SelectionKey.OP_WRITE);
+
+            //回写数据
+            // ByteBuffer outBuffer = ByteBuffer.wrap("好的".getBytes());
+            // 将消息回送给客户端
+            // channel.write(outBuffer);
         } catch (IOException e) {
             e.printStackTrace();
             try {

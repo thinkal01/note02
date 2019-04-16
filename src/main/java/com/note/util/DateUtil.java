@@ -1,10 +1,5 @@
 package com.note.util;
 
-/**
- * <p>Title: 时间和日期的工具类</p>
- * <p>Description: DateUtil类包含了标准的时间和日期格式，以及这些格式在字符串及日期之间转换的方法</p>
- */
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -12,6 +7,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <p>Title: 时间和日期的工具类</p>
+ * <p>Description: DateUtil类包含了标准的时间和日期格式，以及这些格式在字符串及日期之间转换的方法</p>
+ */
 public class DateUtil {
     private static final String PATTERN_DATE = "yyyy-MM-dd";
     private static final String PATTERN_TIME = "HH:mm:ss";

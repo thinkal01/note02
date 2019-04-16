@@ -22,7 +22,6 @@ public class NettyClient {
                         ch.pipeline().addLast(new StringEncoder());
                     }
                 });
-
         Channel channel = bootstrap.connect("127.0.0.1", 8000).channel();
 
         while (true) {
