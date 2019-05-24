@@ -25,7 +25,7 @@ public class RedisTest {
      */
     @Test
     public void test1() {
-        this.redisTemplate.opsForValue().set("key", "test");
+        redisTemplate.opsForValue().set("key", "test");
     }
 
     /**
@@ -33,7 +33,7 @@ public class RedisTest {
      */
     @Test
     public void test2() {
-        String str = (String) this.redisTemplate.opsForValue().get("key");
+        String str = (String) redisTemplate.opsForValue().get("key");
         System.out.println(str);
     }
 
@@ -47,8 +47,8 @@ public class RedisTest {
         users.setUsername("张三");
         users.setUserage(30);
         //更换序列化器
-        this.redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
-        this.redisTemplate.opsForValue().set("users", users);
+        redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
+        redisTemplate.opsForValue().set("users", users);
     }
 
     /**
@@ -57,8 +57,8 @@ public class RedisTest {
     @Test
     public void test4() {
         //更换序列化器
-        this.redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
-        Users users = (Users) this.redisTemplate.opsForValue().get("users");
+        redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
+        Users users = (Users) redisTemplate.opsForValue().get("users");
         System.out.println(users);
     }
 
@@ -72,8 +72,8 @@ public class RedisTest {
         users.setUsername("张三");
         users.setUserage(30);
 
-        this.redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(Users.class));
-        this.redisTemplate.opsForValue().set("usersjson", users);
+        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(Users.class));
+        redisTemplate.opsForValue().set("usersjson", users);
     }
 
     /**
@@ -81,8 +81,8 @@ public class RedisTest {
      */
     @Test
     public void test6() {
-        this.redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(Users.class));
-        Users users = (Users) this.redisTemplate.opsForValue().get("usersjson");
+        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(Users.class));
+        Users users = (Users) redisTemplate.opsForValue().get("usersjson");
         System.out.println(users);
     }
 }

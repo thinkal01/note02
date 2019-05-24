@@ -1,11 +1,8 @@
 package com.note.base.java8.lambda;
 
-import org.apache.zookeeper.Op;
 import org.junit.Test;
 
-import java.awt.*;
 import java.util.*;
-import java.util.List;
 import java.util.function.*;
 
 public class LambdaExpression {

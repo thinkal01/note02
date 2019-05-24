@@ -3,11 +3,26 @@ package com.note.base.thread;
 import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ReentrantLock01 {
     Lock lock = new ReentrantLock();
+
+    @Test
+    public void test() {
+        try {
+            // lock.lock();
+            Condition condition = lock.newCondition();
+            // condition.await(100, TimeUnit.MILLISECONDS);
+            condition.signal();
+            Thread.sleep(500);
+            // Thread.currentThread().interrupt();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     void m1() {
         try {

@@ -1,6 +1,9 @@
 package com.note.util;
 
+import org.apache.commons.collections.CollectionUtils;
+
 import java.util.List;
+import java.util.Random;
 
 public class ListUtil {
 
@@ -12,7 +15,11 @@ public class ListUtil {
      * @return 随机获取的值
      */
     public static <T> T randomValue(List<T> tList) {
-        return tList.get((int) (Math.random() * tList.size()));
+        if (CollectionUtils.isEmpty(tList)) {
+            return null;
+        }
+        // return tList.get((int) (Math.random() * tList.size()));
+        return tList.get(new Random().nextInt(tList.size()));
     }
 
     /**

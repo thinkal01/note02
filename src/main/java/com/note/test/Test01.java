@@ -16,7 +16,7 @@ public class Test01 {
         int[] i = new int[10];
         i[0] = 1;
 
-        int i1 = DateUtil.diffDate("2005-9-10","2005-10-20" );
+        int i1 = DateUtil.diffDate("2005-9-10", "2005-10-20");
     }
 
     @Test

@@ -9,7 +9,7 @@ package com.note.util;
 import java.lang.reflect.*;
 
 /*******************************************************************************
- * md5 类实现了RSA Data Security, Inc.在提交给IETF 的RFC1321中的MD5 message-digest 算法。
+ * md5 类实现了RSA DataTest Security, Inc.在提交给IETF 的RFC1321中的MD5 message-digest 算法。
  ******************************************************************************/
 public class MD5 {
     /*

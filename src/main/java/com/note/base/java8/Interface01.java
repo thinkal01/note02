@@ -4,12 +4,12 @@ interface Inter {
 
     //抽象方法
     void show();
-    //default方法
 
+    //default方法
     default void defaultPrint() {
     }
-    //static方法
 
+    //static方法
     static void staticPrint() {
     }
 }

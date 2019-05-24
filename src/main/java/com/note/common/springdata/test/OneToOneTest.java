@@ -38,7 +38,7 @@ public class OneToOneTest {
         // roles.setUsers(users);
 
         //保存数据
-        this.usersDao.save(users);
+        usersDao.save(users);
     }
 
     /**
@@ -46,7 +46,7 @@ public class OneToOneTest {
      */
     @Test
     public void test2() {
-        Users users = this.usersDao.findOne(13);
+        Users users = usersDao.findOne(13);
         System.out.println("用户信息：" + users);
         Roles roles = users.getRoles();
         System.out.println(roles);

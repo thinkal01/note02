@@ -38,8 +38,6 @@ public class JsonUtil {
     }
 
     /**
-     * [方法功能中文描述]
-     *
      * @param jsonString
      */
     public static List<Object> jsonToList(String jsonString) {

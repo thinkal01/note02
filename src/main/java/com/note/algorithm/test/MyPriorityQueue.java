@@ -1,6 +1,12 @@
 package com.note.algorithm.test;
 
-public class PriorityQueue {
+import org.junit.Test;
+
+import java.util.PriorityQueue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.PriorityBlockingQueue;
+
+public class MyPriorityQueue {
     // 数组
     private long[] arr;
 
@@ -10,14 +16,14 @@ public class PriorityQueue {
     // 有效元素大小
     private int elems;
 
-    public PriorityQueue(int maxSize) {
+    public MyPriorityQueue(int maxSize) {
         this.maxSize = maxSize;
         arr = new long[maxSize];
         elems = 0;
     }
 
     public static void main(String[] args) {
-        PriorityQueue pq = new PriorityQueue(10);
+        MyPriorityQueue pq = new MyPriorityQueue(10);
         pq.insert(30);
         pq.insert(45);
         pq.insert(15);
@@ -66,5 +72,11 @@ public class PriorityQueue {
     // 返回有效元素大小
     public int size() {
         return elems;
+    }
+
+    @Test
+    public void test() {
+        PriorityQueue priorityQueue = new PriorityQueue();
+        PriorityBlockingQueue queue = new PriorityBlockingQueue(100);
     }
 }

@@ -6,7 +6,7 @@ package com.note.algorithm.sort;
  * 初始状态： [6] [202] [100] [301] [38] [8] [1] 比较次数
  * i=1 [6 202 ] [ 100 301] [ 8 38] [ 1 ]3
  * i=2 [ 6 100 202 301 ] [ 1 8 38 ]4
- * i=3　[ 1 6 8 38 100 202 301 ] 4
+ * i=3 [ 1 6 8 38 100 202 301 ] 4
  */
 public class MergeSort {
     public static void sort(int[] data) {
@@ -34,7 +34,6 @@ public class MergeSort {
             else if (temp[i1] < temp[i2])
                 data[cur] = temp[i1++];
             else
-
                 data[cur] = temp[i2++];
         }
     }

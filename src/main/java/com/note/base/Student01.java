@@ -100,4 +100,11 @@ public class Student01 implements Cloneable {
         super.finalize();
     }
 
+    @Override
+    public String toString() {
+        return "Student01{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }

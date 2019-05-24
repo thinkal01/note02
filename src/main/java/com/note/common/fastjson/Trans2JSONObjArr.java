@@ -110,6 +110,7 @@ public class Trans2JSONObjArr {
         System.out.println(jsonObj);
 
         //转换成字符串格式
+        // List list1 = JSON.parseObject(jsonObj, new ArrayList<String>().getClass());
         List<String> list2 = JSON.parseObject(jsonObj, new TypeReference<List<String>>() {
         });
         System.out.println(list2.get(0));

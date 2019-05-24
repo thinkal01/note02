@@ -8,7 +8,7 @@ import java.util.Random;
  * 内存问题：在并发量高的时候，可能有内存溢出。一定注意回收资源问题，线程结束之前将当前线程保存的变量删除
  * ThreadLocal.remove();
  */
-public class ThreadLocalTest {
+public class ThreadLocal01 {
     private static ThreadLocal<MyThreadScopeData> myThreadScopeData = new ThreadLocal<>();
 
     public static void main(String[] args) {
