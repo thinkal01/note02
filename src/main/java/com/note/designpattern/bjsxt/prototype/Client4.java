@@ -30,7 +30,6 @@ public class Client4 {
     }
 }
 
-
 class Laptop implements Cloneable {  //笔记本电脑
     public Laptop() {
         try {

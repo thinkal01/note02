@@ -9,7 +9,6 @@ public class ObserverA implements Observer {
         myState = ((ConcreteSubject) subject).getState();
     }
 
-
     public int getMyState() {
         return myState;
     }

@@ -13,14 +13,12 @@ public class Emp {
         return new EmpMemento(this);
     }
 
-
     //进行数据恢复，恢复成制定备忘录对象的值
     public void recovery(EmpMemento mmt) {
         this.ename = mmt.getEname();
         this.age = mmt.getAge();
         this.salary = mmt.getSalary();
     }
-
 
     public Emp(String ename, int age, double salary) {
         super();

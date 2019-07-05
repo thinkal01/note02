@@ -5,7 +5,6 @@ package com.note.designpattern.bjsxt.singleton;
  * 测试枚举式实现单例模式(没有延时加载)
  */
 public enum SingletonDemo5 {
-
     //这个枚举元素，本身就是单例对象！
     INSTANCE;
 
@@ -13,4 +12,7 @@ public enum SingletonDemo5 {
     public void singletonOperation() {
     }
 
+    public static void main(String[] args) {
+        System.out.println(SingletonDemo5.INSTANCE == SingletonDemo5.INSTANCE);
+    }
 }

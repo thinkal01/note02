@@ -15,7 +15,6 @@ public class StarHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Object object = null;
-
         System.out.println("真正的方法执行前！");
         System.out.println("面谈，签合同，预付款，订机票");
 

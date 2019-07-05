@@ -1,7 +1,6 @@
 package com.note.designpattern.bjsxt.proxy.staticProxy;
 
 public class ProxyStar implements Star {
-
     private Star star;
 
     public ProxyStar(Star star) {

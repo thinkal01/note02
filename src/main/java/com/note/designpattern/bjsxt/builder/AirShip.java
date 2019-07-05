@@ -35,7 +35,6 @@ public class AirShip {
     public void setEscapeTower(EscapeTower escapeTower) {
         this.escapeTower = escapeTower;
     }
-
 }
 
 class OrbitalModule {

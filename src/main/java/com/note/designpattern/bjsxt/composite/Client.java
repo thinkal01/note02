@@ -17,8 +17,7 @@ public class Client {
         f11.add(f5);
         f1.add(f11);
 
-//		f2.killVirus();
-
+        // f2.killVirus();
         f1.killVirus();
     }
 }

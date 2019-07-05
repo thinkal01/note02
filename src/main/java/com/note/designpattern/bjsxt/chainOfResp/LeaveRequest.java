@@ -8,7 +8,6 @@ public class LeaveRequest {
     private int leaveDays;
     private String reason;
 
-
     public LeaveRequest(String empName, int leaveDays, String reason) {
         super();
         this.empName = empName;
@@ -39,6 +38,5 @@ public class LeaveRequest {
     public void setReason(String reason) {
         this.reason = reason;
     }
-
 
 }

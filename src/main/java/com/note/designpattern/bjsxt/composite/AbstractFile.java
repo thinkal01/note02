@@ -8,7 +8,6 @@ public interface AbstractFile {
     void killVirus();  //杀毒
 }
 
-
 class ImageFile implements AbstractFile {
     private String name;
 
@@ -81,6 +80,4 @@ class Folder implements AbstractFile {
             file.killVirus();
         }
     }
-
 }
-

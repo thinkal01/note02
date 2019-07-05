@@ -7,7 +7,7 @@ package com.note.designpattern.bjsxt.memento;
 public class CareTaker {
 
     private EmpMemento memento;
-//	private List<EmpMemento> list = new ArrayList<EmpMemento>();
+    // private List<EmpMemento> list = new ArrayList<>();
 
     public EmpMemento getMemento() {
         return memento;

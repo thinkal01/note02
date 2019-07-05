@@ -19,9 +19,8 @@ public class Context {
         this.strategy = strategy;
     }
 
-    public void pringPrice(double s) {
+    public void printPrice(double s) {
         System.out.println("您该报价：" + strategy.getPrice(s));
     }
-
 
 }

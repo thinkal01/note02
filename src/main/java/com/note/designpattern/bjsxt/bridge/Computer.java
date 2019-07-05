@@ -89,5 +89,3 @@ class DellPad extends Pad {
         System.out.println("销售戴尔平板电脑");
     }
 }
-
-

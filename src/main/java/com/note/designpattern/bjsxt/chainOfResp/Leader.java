@@ -20,10 +20,7 @@ public abstract class Leader {
 
     /**
      * 处理请求的核心的业务方法
-     *
-     * @param request
      */
     public abstract void handleRequest(LeaveRequest request);
-
 
 }

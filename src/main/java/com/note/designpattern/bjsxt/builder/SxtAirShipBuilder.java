@@ -1,6 +1,5 @@
 package com.note.designpattern.bjsxt.builder;
 
-
 public class SxtAirShipBuilder implements AirShipBuilder {
     //StringBuilder, 以后学习XML解析中，JDOM库中的类：DomBuilder,SaxBuilder
     @Override

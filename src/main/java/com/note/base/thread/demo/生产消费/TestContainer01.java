@@ -55,6 +55,7 @@ public class TestContainer01<E> {
         try {
             TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
         for (int i = 0; i < 2; i++) {

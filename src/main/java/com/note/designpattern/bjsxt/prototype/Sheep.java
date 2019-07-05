@@ -3,11 +3,9 @@ package com.note.designpattern.bjsxt.prototype;
 import java.io.Serializable;
 import java.util.Date;
 
-
 public class Sheep implements Cloneable, Serializable {   //1997,英国的克隆羊，多利！
     private String sname;
     private Date birthday;
-
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
