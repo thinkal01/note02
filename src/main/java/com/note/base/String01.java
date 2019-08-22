@@ -210,8 +210,10 @@ public class String01 {
         String substring = "abc".substring(0, 0);
     }
 
+    @Test
     public void testNull() {
         String nullStr = null + ""; // "null"
+        nullStr = "123" + null; // "123null"
     }
 
 }

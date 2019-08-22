@@ -22,7 +22,7 @@ public class FileServlet extends HttpServlet {
 
         IOUtils.copy(in, response.getOutputStream());
 
-        String userAgent = request.getHeader("User-Agent");//获取名为User-Agent的请求头！
+        String userAgent = request.getHeader("ItemUser-Agent");//获取名为User-Agent的请求头！
         /*
          * Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36
          */

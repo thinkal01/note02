@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -102,5 +103,11 @@ public class Date01 {
         df2 = DateFormat.getDateTimeInstance(DateFormat.YEAR_FIELD, DateFormat.ERA_FIELD, new Locale("zh", "CN"));
         System.out.println("DATE：" + df1.format(new Date())); // 按照日期格式化
         System.out.println("DATETIME：" + df2.format(new Date()));
+    }
+
+    @Test
+    public void testFormatException() throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        format.parse("2018-07-01");
     }
 }

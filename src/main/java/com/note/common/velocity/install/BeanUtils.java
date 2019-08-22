@@ -183,8 +183,8 @@ public class BeanUtils {
     /**
      * 获取路径的最后面字符串<br>
      * 如：<br>
-     * <code>str = "com.b510.base.bean.User"</code><br>
-     * <code> return "User";<code>
+     * <code>str = "com.b510.base.bean.ItemUser"</code><br>
+     * <code> return "ItemUser";<code>
      *
      * @param str
      * @return

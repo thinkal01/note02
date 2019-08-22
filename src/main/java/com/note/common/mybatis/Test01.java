@@ -42,7 +42,7 @@ public class Test01 {
          */
         // sqlSession.clearCache();
         // sqlSession.close();
-        // sqlSession.update("com.note.common.mybatis.userMapper.updateUser",new User(2, "user", 23));
+        // sqlSession.update("com.note.common.mybatis.userMapper.updateUser",new ItemUser(2, "user", 23));
         user = sqlSession.selectOne(statement, 1L);
         System.out.println(user);
     }

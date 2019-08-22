@@ -79,7 +79,7 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", account=" + account + ", email=" + email
+		return "ItemUser [id=" + id + ", account=" + account + ", email=" + email
 				+ ", sex=" + sex + ", position=" + position + ", createdDate="
 				+ createdDate + ", salary=" + salary + "]";
 	}

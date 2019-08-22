@@ -14,7 +14,7 @@ public class PbServerHandler extends ChannelHandlerAdapter {
         System.out.println("cmd" + cmd);
 
         // ByteString buf = requestMsg.getRequestParam();
-        // User user = User.parseFrom(buf);
+        // ItemUser user = ItemUser.parseFrom(buf);
         // System.out.println(user.getUserName());
         // ctx.writeAndFlush(user);
         // Media media = new Media();

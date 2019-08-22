@@ -61,4 +61,8 @@ public class MailParam {
     public void setContent(String content) {
         this.content = content;
     }
+
+
+
 }
+

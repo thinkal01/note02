@@ -14,8 +14,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    @RequestMapping(value = "/hello.do", method = {RequestMethod.GET,
-            RequestMethod.POST})
+    @RequestMapping(value = "/hello.do", method = {RequestMethod.GET, RequestMethod.POST})
     public String hello() {
         return "index";
     }

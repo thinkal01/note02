@@ -2,6 +2,9 @@ package com.note.base;
 
 import org.junit.Test;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,7 +14,6 @@ public class Regex01 {
         String regex = "[1-9]\\d{4,14}";
         // email
         regex = "\\w+@\\w{2,6}(\\.\\w{2,3})+";
-
 
         String s2 = "aa.bb.cc";
         String[] str2Array = s2.split("\\.");
@@ -66,5 +68,20 @@ public class Regex01 {
         boolean b = m.find();
         // a.txt
         String group = m.group(1);
+    }
+
+    @Test
+    public void test03() {
+        String regex = "(present\\*|time\\*)([<>=]+\\d)";
+        String line = "*present*==3&&*time*>=4";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(line);
+        System.out.println(m.matches());
+        while (m.find()) {
+            System.out.println(m.group());
+            // System.out.println(m.group(0)); // 所有内容
+            // System.out.println(m.group(1)); // 第一个括号
+            System.out.println(m.group(2)); // 第二个括号
+        }
     }
 }

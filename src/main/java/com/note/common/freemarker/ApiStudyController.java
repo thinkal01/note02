@@ -44,8 +44,8 @@ public class ApiStudyController {
     /**
      * SpringMVC 确定目标方法 POJO 类型入参的过程
      * 第一步: 确定一个 key
-     * 若方法形如 "testModelAttribute(User user)" ， 则key为 user(POJO 类名第一个字母小写)
-     * 若方法形如"testModelAttribute(@ModelAttribute("userObj") User user)" ，则key为 userObj
+     * 若方法形如 "testModelAttribute(ItemUser user)" ， 则key为 user(POJO 类名第一个字母小写)
+     * 若方法形如"testModelAttribute(@ModelAttribute("userObj") ItemUser user)" ，则key为 userObj
      * 第二步: 在 implicitModel 中查找 key 对应的对象
      * 若 implicitModel 存在, 则作为入参传入
      * 若 implicitModel 中不存在, 则检查当前Handler 是否使用 @SessionAttributes 注解
@@ -63,14 +63,14 @@ public class ApiStudyController {
     /**
      * 常用方法：@ModelAttribute 修饰方法。 被该注解修饰的方法, 会在每个目标方法执行之前被 SpringMVC 调用
      * 运行流程:
-     * 第一步: 在执行 testModelAttribute(User user) 方法前，会先执行被@ModelAttribute 注解修饰的方法 getUser()
+     * 第一步: 在执行 testModelAttribute(ItemUser user) 方法前，会先执行被@ModelAttribute 注解修饰的方法 getUser()
      * 第二步: 执行getUser() 后，将执行放入到Map中，其中的key 必须和目标方法User对象的首字母小写user
-     * 第三步: SpringMVC 从 Map 中取出 User 对象,然后把对象传入目标方法的参数.
+     * 第三步: SpringMVC 从 Map 中取出 ItemUser 对象,然后把对象传入目标方法的参数.
      * <p>
      * 未使用 @ModelAttribute testModelAttribute方法 打印的信息 :
-     * update : User [id=1, account=itdragon, password=null, position=null]
+     * update : ItemUser [id=1, account=itdragon, password=null, position=null]
      * 使用@ModelAttribute testModelAttribute方法 打印的信息 :
-     * update : User [id=1, account=itdragon, password=zhangdeshuai, position=null]
+     * update : ItemUser [id=1, account=itdragon, password=zhangdeshuai, position=null]
      */
     @ModelAttribute
     public void getUser(@RequestParam(value = "id", required = false) Integer id,

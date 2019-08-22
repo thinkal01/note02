@@ -87,7 +87,7 @@ public class Quickstart {
 
         //say who they are:
         //print their identifying principal (in this case, a username):
-        log.info("----> User [" + currentUser.getPrincipal() + "] logged in successfully.");
+        log.info("----> ItemUser [" + currentUser.getPrincipal() + "] logged in successfully.");
 
         //test a role:
         // 测试是否有某一个角色. 调用 Subject 的 hasRole 方法.

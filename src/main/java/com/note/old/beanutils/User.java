@@ -22,7 +22,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [username=" + username + ", password=" + password + "]";
+        return "ItemUser [username=" + username + ", password=" + password + "]";
     }
 
     public User() {

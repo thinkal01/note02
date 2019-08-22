@@ -66,7 +66,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", birth=" + birth
+        return "ItemUser [id=" + id + ", name=" + name + ", birth=" + birth
                 + ", age=" + age + ", isdead=" + isdead + "]";
     }
 

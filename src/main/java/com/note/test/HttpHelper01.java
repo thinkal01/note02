@@ -75,7 +75,7 @@ public class HttpHelper01 {
     public static HttpURLConnection getHttpURLConnection(String url) throws IOException {
         URL u = new URL(url);
         HttpURLConnection conn = (HttpURLConnection) u.openConnection();
-        conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36");
+        conn.setRequestProperty("ItemUser-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36");
         conn.setRequestProperty("Accept", "*/*");
         conn.setRequestProperty("Connection", "close");
         return conn;

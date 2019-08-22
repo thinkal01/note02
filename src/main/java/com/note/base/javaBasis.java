@@ -11,6 +11,19 @@ public class javaBasis {
     }
 
     @Test
+    public void test05() {
+        // byte b = 25;
+        byte b = 99;
+        String s = Integer.toBinaryString(b); // 11001,25
+        // 取高四位至低四位
+        int high = b >>> 4 & 0b00001111;
+        // 取低四位
+        int low = b & 0b00001111;
+        String sHigh = Integer.toBinaryString(high);
+        String sLow = Integer.toBinaryString(low);
+    }
+
+    @Test
     public void test02() {
         //定义了三个byte类型的变量，b1，b2，b3
         //b1的值是3，b2的值是4，b没有值
@@ -99,5 +112,6 @@ public class javaBasis {
         0011111111 11111111 11111111 111010 (00)
 */
     }
+
 
 }

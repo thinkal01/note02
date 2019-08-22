@@ -1,6 +1,7 @@
 package com.note.util;
 
 import org.apache.log4j.Logger;
+import org.junit.Test;
 
 import javax.swing.filechooser.FileFilter;
 import java.io.*;
@@ -18,8 +19,8 @@ public class FileUtil {
     /**
      * 私有构造方法，防止类的实例化，因为工具类不需要实例化。
      */
-    private FileUtil() {
-    }
+    /*private FileUtil() {
+    }*/
 
     /**
      * 修改文件的最后访问时间。
@@ -338,13 +339,13 @@ public class FileUtil {
     public static URI getURI(File file) {
         URI uri = file.toURI();
 
-//        String fileURL = "file:/" + file.getAbsolutePath();
-//        URL url = null;
-//        try {
-//            url = new URL(fileURL);
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
+        /*String fileURL = "file:/" + file.getAbsolutePath();
+        URL url = null;
+        try {
+            url = new URL(fileURL);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }*/
 
         return uri;
     }
@@ -911,4 +912,18 @@ public class FileUtil {
         InputStream inputStream = clazz.getResourceAsStream(fileName);
         return inputStream;
     }
+
+    @Test
+    public void test() {
+        File file = new File(".");
+        // .
+        System.out.println(file.getPath());
+        // E:\ItemUser\Idea\note02\.
+        System.out.println(file.getAbsolutePath());
+
+        String property = System.getProperty("user.dir");
+        // E:\ItemUser\Idea\note02
+        System.out.println(property);
+    }
+
 }
