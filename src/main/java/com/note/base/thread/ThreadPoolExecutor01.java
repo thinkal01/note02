@@ -21,12 +21,12 @@ public class ThreadPoolExecutor01 {
 
     public void main1() {
         // 10个线程来处理大量的任务
-//		ThreadPoolExecutor pool = new ThreadPoolExecutor(10, 10, 0, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
-//         ExecutorService pool = Executors.newFixedThreadPool(10);
-//		ExecutorService pool = Executors.newCachedThreadPool();
-//		ExecutorService pool = Executors.newSingleThreadExecutor();
+        // ThreadPoolExecutor pool = new ThreadPoolExecutor(10, 10, 0, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
+        // ExecutorService pool = Executors.newFixedThreadPool(10);
+        // ExecutorService pool = Executors.newCachedThreadPool();
+        // ExecutorService pool = Executors.newSingleThreadExecutor();
         ScheduledExecutorService pool = Executors.newScheduledThreadPool(10);
-//		ExecutorService pool = Executors.newWorkStealingPool();
+        // ExecutorService pool = Executors.newWorkStealingPool();
 
         while (true) {
             Future f = (Future) pool.submit(() -> {
@@ -42,7 +42,6 @@ public class ThreadPoolExecutor01 {
                 }
             });
         }
-
     }
 
 }

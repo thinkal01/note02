@@ -1,8 +1,19 @@
 package com.note.base.thread.heima;
 
+import org.junit.Test;
+
 import java.util.concurrent.*;
 
 public class ThreadPoolTest {
+    @Test
+    public void test02() {
+        // 当前机器CPU数量,逻辑核心数
+        int availableProcessors = Runtime.getRuntime().availableProcessors();
+        // 线程池设置多大比较合理
+        // IO密集型=2Ncpu（可以测试后控制大小，2Ncpu一般没问题,常出现于数据库交互、文件上传下载、网络数据传输等）
+        // 计算密集型=Ncpu（常出现于线程中：复杂算法）
+    }
+
     public static void main(String[] args) {
         /**
          * 固定容量线程池
@@ -37,9 +48,9 @@ public class ThreadPoolTest {
         System.out.println(service);
 
         // service.shutdown();
-        // 是否已经结束， 相当于回收了资源。
+        // 是否已经结束，相当于回收了资源
         System.out.println(service.isTerminated());
-        // 是否已经关闭， 是否调用过shutdown方法
+        // 是否已经关闭，是否调用过shutdown方法
         System.out.println(service.isShutdown());
         System.out.println(service);
 
@@ -56,11 +67,11 @@ public class ThreadPoolTest {
             service.shutdown();
             // 5秒内,所有任务都结束返回TRUE
             if (!service.awaitTermination(5000, TimeUnit.MILLISECONDS)) {
-                // 超时的时候向线程池中所有的线程发出中断(interrupted)。
+                // 超时的时候向线程池中所有的线程发出中断(interrupted)
                 service.shutdownNow();
             }
         } catch (InterruptedException e) {
-            // awaitTermination方法被中断的时候也中止线程池中全部的线程的执行。
+            // awaitTermination方法被中断的时候也中止线程池中全部的线程的执行
             System.out.println("awaitTermination interrupted: " + e);
             // 强制关闭
             service.shutdownNow();

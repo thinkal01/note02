@@ -4,6 +4,9 @@ import org.junit.Test;
 
 import java.util.*;
 import java.util.function.*;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
 public class LambdaExpression {
 
@@ -117,5 +120,53 @@ public class LambdaExpression {
         // 类名::new
         Function<String, String> function = String::new;
         String s = function.apply("abc");
+    }
+
+    @Test
+    public void test05() {
+        Apple apple = new Apple("", 1);
+        Apple apple2 = new Apple("", 12);
+        Apple apple3 = new Apple("", 123);
+
+        List<Apple> appleList = new ArrayList<>();
+        appleList.add(apple);
+        appleList.add(apple2);
+        appleList.add(apple3);
+
+        // map只是一维 1对1 的映射
+        // flatmap可以将一个2维集合映射成一维,相当于映射深度比map深了一层
+        Function<Apple, Object> function = apple1 -> apple1.getWeight();
+        Stream<Object> stream = appleList.stream().map(function);
+        Function<Object, Stream<?>> function1 = o -> Arrays.asList(o).stream();
+        Stream<Object> stream1 = stream.flatMap(function1);
+
+        List<Object> collect = stream1.collect(Collectors.toList());
+
+        LongStream longStream = appleList.stream().mapToLong(Apple::getWeight);
+        longStream.flatMap(value -> LongStream.of(value));
+        longStream.forEach(value -> System.out.println(value));
+        appleList.stream().flatMapToLong(new Function<Apple, LongStream>() {
+            @Override
+            public LongStream apply(Apple apple) {
+                return LongStream.of(apple.getWeight());
+            }
+        });
+    }
+
+    @Test
+    public void test06() {
+        List<String> list = Arrays.asList("beijing changcheng", "beijing gugong", "beijing tiantan", "gugong tiananmen");
+        //map只能将分割结果转成一个List,所以输出list对象
+        list.stream().map(item -> Arrays.stream(item.split(" "))).forEach(System.out::println);
+        //想要每个list里的元素，还需要一层foreach     
+        list.stream().map(item -> Arrays.stream(item.split(" "))).forEach(n -> n.forEach(System.out::println));
+        //flatmap可以将字符串分割成各自的list之后直接合并成一个List,也就是flatmap可以将一个2维集合转成1维
+        list.stream().flatMap(item -> Arrays.stream(item.split(" "))).collect(Collectors.toList()).forEach(System.out::println);
+    }
+
+    @Test
+    public void test07() {
+        String[] strArr = new String[]{"1", "12", "123"};
+        List<Long> longList = Arrays.stream(strArr).map(Long::valueOf).flatMap(Stream::of).collect(Collectors.toList());
     }
 }
