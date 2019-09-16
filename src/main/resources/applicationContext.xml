@@ -5,4 +5,7 @@
        					   http://www.springframework.org/schema/beans/spring-beans.xsd">
     <!--<import resource="shiro/spring/applicationContext-*.xml"/>-->
     <import resource="spring-data/spring-hibernate-jpa.xml"/>
+
+
 </beans>
+

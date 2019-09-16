@@ -23,5 +23,4 @@ public class LambdaTest {
         t2.start();
     }
 
-
 }

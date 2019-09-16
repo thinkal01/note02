@@ -2,9 +2,6 @@ package com.note.base;
 
 import org.junit.Test;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -73,10 +70,20 @@ public class Regex01 {
     @Test
     public void test03() {
         String regex = "(present\\*|time\\*)([<>=]+\\d)";
-        String line = "*present*==3&&*time*>=4";
         Pattern p = Pattern.compile(regex);
+
+        String line = "*present*==3&&*time*>=4";
         Matcher m = p.matcher(line);
-        System.out.println(m.matches());
+        while (m.find()) {
+            System.out.println(m.group());
+            // System.out.println(m.group(0)); // 所有内容
+            // System.out.println(m.group(1)); // 第一个括号
+            System.out.println(m.group(2)); // 第二个括号
+        }
+
+        line = "*present*==4&&*time*>=5";
+        // pattern可以重复使用
+        m = p.matcher(line);
         while (m.find()) {
             System.out.println(m.group());
             // System.out.println(m.group(0)); // 所有内容

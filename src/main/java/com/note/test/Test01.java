@@ -67,4 +67,14 @@ public class Test01 {
         }
     }
 
+    @Test
+    public void test10() {
+        for (int i = 0; i < 1000; ++i) {
+            double random = Math.random();
+            if (random > 0.995) {
+                System.out.println(random);
+            }
+        }
+    }
+
 }

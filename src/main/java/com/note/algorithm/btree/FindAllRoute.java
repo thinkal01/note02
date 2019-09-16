@@ -3,6 +3,8 @@ package com.note.algorithm.btree;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class FindAllRoute {
 
@@ -30,7 +32,8 @@ public class FindAllRoute {
         root.children.get(0).children.get(1).children.add(new TreeNode("I"));
 
         // recurTree(root);
-        System.out.println(dfsTree(root));
+        // System.out.println(dfsTree(root));
+        System.out.println(bfsTree2(root, Arrays.asList("A", "B", "E")));
     }
 
     /**
@@ -132,6 +135,67 @@ public class FindAllRoute {
                     List<TreeNode> list = new ArrayList<>(curList);
                     list.add(curNode);
                     qstr.add(list);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * 广度优先遍历 ---- 查找树的所有叶子路径
+     *
+     * @param root          根节点
+     * @param nodeValueList 路径包含所有节点value列表
+     * @return 叶子路径的集合
+     */
+    public List<List<TreeNode>> bfsTree2(TreeNode root, List<String> nodeValueList) {
+        Queue<TreeNode> nodeQueue = new LinkedList<>();
+        Queue<List<TreeNode>> qstr = new LinkedList<>();
+        List<List<TreeNode>> result = new ArrayList<>();
+        nodeQueue.add(root);
+        ArrayList<TreeNode> arrayList = new ArrayList<>();
+        qstr.add(arrayList);
+
+        while (!nodeQueue.isEmpty()) {
+            TreeNode curNode = nodeQueue.remove();
+            List<TreeNode> curList = qstr.remove();
+
+            if (curNode.children == null || curNode.children.size() <= 0) {
+                curList.add(curNode);
+                boolean isContainAll = true;
+                // 获取节点value列表
+                List<String> curValueList = curList.stream().map(node -> node.value).flatMap(Stream::of).collect(Collectors.toList());
+                for (String nodeValue : nodeValueList) {
+                    if (!curValueList.contains(nodeValue)) {
+                        isContainAll = false;
+                        break;
+                    }
+                }
+                if (isContainAll) { // 包含所有节点时,添加至结果集
+                    result.add(curList);
+                }
+            } else {
+                boolean isContainValue = false;
+                for (TreeNode treeNode : curNode.children) {
+                    // 包含value时,执行该路径
+                    if (nodeValueList.contains(treeNode.value)) {
+                        isContainValue = true;
+                        nodeQueue.add(treeNode);
+                        List<TreeNode> list = new ArrayList<>(curList);
+                        list.add(curNode);
+                        qstr.add(list);
+                    }
+                }
+
+                // 所有value都不包含时,执行所有路径
+                if (!isContainValue) {
+                    for (TreeNode treeNode : curNode.children) {
+                        nodeQueue.add(treeNode);
+                        List<TreeNode> list = new ArrayList<>(curList);
+                        list.add(curNode);
+                        qstr.add(list);
+                    }
                 }
             }
         }

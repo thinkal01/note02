@@ -1,5 +1,6 @@
 package com.note.base.java8.stream;
 
+import lombok.Getter;
 import org.junit.Test;
 
 import java.util.*;
@@ -15,8 +16,9 @@ public class StreamTest1 {
     // 创建Stream
     @Test
     public void test() {
-        Stream stream1 = Stream.of("hello", "world", "hello world");
+        Stream<String> stream = Stream.of("hello", "world", "hello world");
 
+        // 通过数组创建流
         String[] myArray = new String[]{"hello", "world", "hello world"};
         Stream stream2 = Stream.of(myArray);
         Stream stream3 = Arrays.stream(myArray);
@@ -24,40 +26,44 @@ public class StreamTest1 {
         List<String> list = Arrays.asList(myArray);
         Stream stream4 = list.stream();
 
-        IntStream.of(new int[]{5, 6, 7}).forEach(System.out::println);
+        IntStream intStream = IntStream.of(new int[]{5, 6, 7});
         // 不包括8
-        IntStream.range(3, 8).forEach(System.out::println);
+        IntStream intStream1 = IntStream.range(3, 8);
         // 包括8
-        IntStream.rangeClosed(3, 8).forEach(System.out::println);
+        IntStream intStream2 = IntStream.rangeClosed(3, 8);
+
+        // 流转数组
+        String[] strings = stream.toArray(length -> new String[length]);
+        String[] stringArray = stream.toArray(String[]::new);
+        Arrays.asList(stringArray).forEach(System.out::println);
     }
 
     @Test
     public void test2() {
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
-        // 初始值0,累加
-        System.out.println(list.stream().map(i -> 2 * i).reduce(0, Integer::sum));
+        // 初始值0,累加,21
+        Integer reduce = list.stream().reduce(0, Integer::sum);
     }
 
+    // collect 操作
     @Test
     public void test3() {
         Stream<String> stream = Stream.of("hello", "world", "helloworld");
-        // stream.toArray(length -> new String[length]);
-        // String[] stringArray = stream.toArray(String[]::new);
-        // Arrays.asList(stringArray).forEach(System.out::println);
 
         // 第一个参数返回值,第二个参数遍历元素添加到list,第三个参数添加得到的所有list到第三个list2中返回
         // List<String> list = stream.collect(() -> new ArrayList(), (theList, item) -> theList.add(item),
         //         (theList1, theList2) -> theList1.addAll(theList2));
-        // List<String> list = stream.collect(LinkedList::new, LinkedList::add, LinkedList::addAll);
+        List<String> list = stream.collect(LinkedList::new, LinkedList::add, LinkedList::addAll);
         // List<String> list = stream.collect(Collectors.toList());
 
-        List<String> list = stream.collect(Collectors.toCollection(ArrayList::new));
+        List<String> list2 = stream.collect(Collectors.toCollection(ArrayList::new));
         Set<String> set = stream.collect(Collectors.toCollection(TreeSet::new));
         // 拼接成一个字符串
         String str = stream.collect(Collectors.joining());
         System.out.println(str);
     }
 
+    // map操作
     @Test
     public void test4() {
         List<String> list = Arrays.asList("hello", "world", "helloworld", "test");
@@ -145,6 +151,7 @@ public class StreamTest1 {
         list = Arrays.asList("hello welcome", "world hello", "hello world hello", "hello welcome");
         // 拆分去重
         List<String> result = list.stream().map(item -> item.split(" ")).flatMap(Arrays::stream).distinct().collect(Collectors.toList());
+        result = list.stream().map(item -> item.split(" ")).flatMap(Stream::of).collect(Collectors.toList());
     }
 
     public void test9() {
@@ -221,6 +228,19 @@ public class StreamTest1 {
         System.out.println(map5);
     }
 
+    // match操作
+    @Test
+    public void test12() {
+        List<String> strs = Arrays.asList("a", "a", "a", "a", "b");
+        // 任意一个元素成功，返回true
+        strs.stream().anyMatch(str -> str.equals("a"));
+        // 所有的都是，返回true
+        strs.stream().allMatch(str -> str.equals("a"));
+        // 所有的都不是，返回true
+        strs.stream().noneMatch(str -> str.equals("a"));
+    }
+
+    @Getter
     class Student {
         private String name;
         private int score;
@@ -229,22 +249,5 @@ public class StreamTest1 {
             this.name = name;
             this.score = score;
         }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public int getScore() {
-            return score;
-        }
-
-        public void setScore(int score) {
-            this.score = score;
-        }
-
     }
 }

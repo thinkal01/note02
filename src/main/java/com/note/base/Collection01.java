@@ -71,4 +71,17 @@ public class Collection01 {
         System.out.println(map);
     }
 
+    @Test
+    public void get() {
+        TreeMap<Integer, String> map = new TreeMap<>();
+        map.put(2, "b");
+        map.put(1, "a");
+        map.put(4, "d");
+        map.put(3, "c");
+        // treemap 第一个key
+        System.out.println(map.get(map.firstKey()));
+        // treemap 最后一个key
+        System.out.println(map.get(map.lastKey()));
+    }
+
 }
