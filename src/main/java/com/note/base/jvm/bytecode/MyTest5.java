@@ -4,18 +4,16 @@ package com.note.base.jvm.bytecode;
  * 程序运行结果
  * grandpa
  * grandpa
- *
+ * <p>
  * 原因是方法的静态分派
- *
+ * <p>
  * Grandpa g1 = new Father();
  * 以上代码，g1的静态类型是Grandpa，而g1的实际类型（真正指向的类型）是Father。
- *
+ * <p>
  * 变量的静态类型是不会发生变化的，而变量的实际类型是可以发生变化的（多态的一种体现），实际类型是在运行期方可确定。
  */
 public class MyTest5 {
-
     // 方法重载，是一种静态的行为，编译器就可以完全确定。
-
     public void test(Grandpa grandpa) {
         System.out.println("grandpa");
     }
@@ -41,17 +39,13 @@ public class MyTest5 {
         myTest5.test(g1);
         myTest5.test(g2);
     }
-
 }
 
 class Grandpa {
-
 }
 
 class Father extends Grandpa {
-
 }
 
 class Son extends Father {
-
 }

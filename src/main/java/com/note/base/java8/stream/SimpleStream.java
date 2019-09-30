@@ -23,6 +23,7 @@ public class SimpleStream {
     }
 
     public static List<String> getDishName(List<Dish> dishList) {
+        // 从小到大排列
         return dishList.stream().filter(d -> d.getCalories() < 400).sorted(Comparator.comparing(Dish::getCalories)).map(Dish::getName).collect(toList());
     }
 }

@@ -24,9 +24,6 @@ import java.util.ServiceLoader;
 
     当高层提供了统一的接口让低层去实现，同时又要在高层加载（或实例化）低层的类时，就必须要通过线程上下文类加载器来帮助高层的ClassLoader
     找到并加载该类。
-
-
-
  */
 public class Test26 {
 
@@ -47,6 +44,5 @@ public class Test26 {
 
         System.out.println("当前线程上下文加载器 ： " + Thread.currentThread().getContextClassLoader());
         System.out.println("ServiceLoader的类加载器 ： " + ServiceLoader.class.getClassLoader());
-
     }
 }

@@ -17,7 +17,6 @@ public class MyTest3 {
     public void test() {
         try {
             InputStream is = new FileInputStream("test.txt");
-
             ServerSocket serverSocket = new ServerSocket(9999);
             serverSocket.accept();
         } catch (FileNotFoundException ex) {
@@ -29,7 +28,5 @@ public class MyTest3 {
         } finally {
             System.out.println("finally");
         }
-
-
     }
 }

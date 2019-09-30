@@ -5,13 +5,12 @@ import java.lang.ref.SoftReference;
 import java.util.HashMap;
 
 /**
- * 描述: 具备软引用功能的 HashMap
+ * 具备软引用功能的 HashMap
  */
 public class SoftHashMap<K, V> extends HashMap<K, V> {
 
     /**
      * queue,软引用标记队列
-     * ★★★★★★★ 解释 ★★★★★★★
      * 当SoftNode中 Value 被回收时，SoftNode 对象会被放入 queue中，以表示当前SoftNode 中的Value不存在
      * 对使用好处就是，读取 queue 队列，取出 SoftNode对象，取出其内部的 Key
      * 以便于 temp 通过 key remove
@@ -20,7 +19,7 @@ public class SoftHashMap<K, V> extends HashMap<K, V> {
 
     /**
      * 真正的map对象
-     * 1、temp 内部 封装的 Node 强引用 K 和 SoftNode
+     * 1、temp 内部封装的Node强引用K 和 SoftNode
      * 2、SoftNode 内部强引用K，弱引用真正的Value
      */
     private HashMap<K, SoftNode<K, V>> temp;
@@ -33,7 +32,7 @@ public class SoftHashMap<K, V> extends HashMap<K, V> {
     @Override
     public V get(Object key) {
         clearQueue();
-        // 通过 key进行取值，如果为null，返回null，否则返回 SoftNode 软引用的值
+        // 通过key进行取值，如果为null，返回null，否则返回 SoftNode 软引用的值
         SoftNode softNode = temp.get(key);
         return softNode == null ? null : (V) softNode.get();
     }
@@ -41,11 +40,11 @@ public class SoftHashMap<K, V> extends HashMap<K, V> {
     @Override
     public V put(K key, V value) {
         clearQueue();
-        // 创建 SoftNode对象
+        // 创建SoftNode对象
         SoftNode softNode = new SoftNode(key, value, queue);
         // 返回key之前所对应的SoftNode对象，即oldSoftNode
         SoftNode oldSoftNode = temp.put(key, softNode);
-        // 如果oldSoftNode为null，就返回null，否则就返回 oldSoftNode所软引用的 Value
+        // 如果oldSoftNode为null，就返回null，否则就返回oldSoftNode所软引用的Value
         return oldSoftNode == null ? null : (V) oldSoftNode.get();
     }
 
