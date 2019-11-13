@@ -76,14 +76,6 @@ public class LambdaExpression {
         // 先执行function1
         System.out.println(function1.andThen(function2).apply(2));
 
-        Predicate<Integer> predicate = item -> item > 5;
-        Predicate<Integer> predicate2 = item -> item % 2 == 0;
-        Predicate<Integer> and = predicate.and(predicate2);
-        Predicate<Integer> or = predicate.or(predicate2);
-
-        // 判断两个参数是否相等
-        Predicate<Object> equal = Predicate.isEqual("abc");
-        boolean b = equal.test("adc");
         // BiFunction 子类
         BinaryOperator<Integer> binaryOperator = (m, n) -> m + n;
         BinaryOperator.minBy(String::compareTo);

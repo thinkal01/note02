@@ -53,7 +53,7 @@ public class Regex01 {
 
     @Test
     public void matches01() {
-        //匹配手机号码是否正确。
+        //匹配手机号码是否正确
         String tel = "15800001111";
         String regex = "1[358]\\d{9}";
         boolean b = tel.matches(regex);
@@ -136,5 +136,14 @@ public class Regex01 {
             System.out.println(m.group(2)); // 第二个括号
             System.out.println(m.group(3)); // 第三个括号
         }
+    }
+
+    @Test
+    public void test05() {
+        // System.out.println("A**\\B**C*".replaceAll("(^|([^\\\\]))[\\*]{2,}", "$2*"));
+        System.out.println("******".replaceAll("(^|(^\\\\))\\*{2,}", "$2*"));
+        System.out.println("A**\\\\B**C*".replaceAll("(^|([^\\\\]))\\*{2,}", "$2*"));
+        System.out.println("******".replaceAll("(^|(^\\\\))\\*{2,}", "$2*"));
+        System.out.println("A**\\\\B**C*".replaceAll("\\*{2,}", "*"));
     }
 }

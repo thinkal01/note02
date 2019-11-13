@@ -233,7 +233,7 @@ public class StreamTest1 {
     public void test12() {
         List<String> strs = Arrays.asList("a", "a", "a", "a", "b");
         // 任意一个元素成功，返回true
-        strs.stream().anyMatch(str -> str.equals("a"));
+        System.out.println(strs.stream().anyMatch("a"::equals));
         // 所有的都是，返回true
         strs.stream().allMatch(str -> str.equals("a"));
         // 所有的都不是，返回true
