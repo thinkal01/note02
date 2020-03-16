@@ -11,6 +11,8 @@ import java.util.Random;
 public class PasswordUtil {
     /**
      * 生成含有随机盐的密码
+     * 保存密码到数据库时，都生成一个随机16位数字，将这16位数字和密码相加再求MD5摘要，
+     * 然后在摘要中再将这16位数字按规则掺入形成一个48位的字符串。
      */
     public static String generate(String password) {
         Random r = new Random();

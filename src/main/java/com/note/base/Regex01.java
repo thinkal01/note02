@@ -141,9 +141,6 @@ public class Regex01 {
     @Test
     public void test05() {
         // System.out.println("A**\\B**C*".replaceAll("(^|([^\\\\]))[\\*]{2,}", "$2*"));
-        System.out.println("******".replaceAll("(^|(^\\\\))\\*{2,}", "$2*"));
-        System.out.println("A**\\\\B**C*".replaceAll("(^|([^\\\\]))\\*{2,}", "$2*"));
-        System.out.println("******".replaceAll("(^|(^\\\\))\\*{2,}", "$2*"));
         System.out.println("A**\\\\B**C*".replaceAll("\\*{2,}", "*"));
     }
 }

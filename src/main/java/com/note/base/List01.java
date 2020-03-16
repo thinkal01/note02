@@ -6,6 +6,7 @@ import java.util.*;
 
 public class List01 {
     // set,add index方法
+    @Test
     public void test05() {
         ArrayList<String> list = new ArrayList<>();
         list.add("a");

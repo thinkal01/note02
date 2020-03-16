@@ -24,6 +24,47 @@ public class ReentrantLock01 {
         }
     }
 
+    /**
+     * tryLock
+     */
+    @Test
+    public void tryLock01() {
+        final ReentrantLock01 t = new ReentrantLock01();
+        new Thread(() -> t.m1()).start();
+        new Thread(() -> t.m2()).start();
+
+        // 主线程等待
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+        }
+    }
+
+    @Test
+    public void lockInterruptibly() {
+        final ReentrantLock01 t = new ReentrantLock01();
+        new Thread(() -> t.m1()).start();
+
+        Thread t2 = new Thread(() -> t.m3());
+        t2.start();
+        // 打断线程休眠。非正常结束阻塞状态的线程，都会抛出异常。
+        t2.interrupt();
+    }
+
+    /**
+     * 公平锁
+     */
+    @Test
+    public void fairLock() {
+        FairLock01 t = new FairLock01();
+        // TestSync t = new TestSync();
+        Thread t1 = new Thread(t);
+        Thread t2 = new Thread(t);
+        // 一般两线程交替执行
+        t1.start();
+        t2.start();
+    }
+
     void m1() {
         try {
             lock.lock();
@@ -45,12 +86,11 @@ public class ReentrantLock01 {
         try {
             // 无法获取锁标记，返回false。
             // 如果获取锁标记，返回true
-            // isLocked = lock.tryLock();
+            isLocked = lock.tryLock();
 
             // 阻塞尝试锁，阻塞参数代表的时长，尝试获取锁标记。
             // 如果超时，不等待。直接返回。
-            isLocked = lock.tryLock(5, TimeUnit.SECONDS);
-
+            // isLocked = lock.tryLock(5, TimeUnit.SECONDS);
             if (isLocked) {
                 System.out.println("m2() method synchronized");
             } else {
@@ -64,6 +104,14 @@ public class ReentrantLock01 {
                 lock.unlock();
             }
         }
+        // 建议以下写法
+        /*if (lock.tryLock()) {
+            try {
+            } catch (Exception e) {
+            } finally {
+                lock.unlock();
+            }
+        }*/
     }
 
     /**
@@ -76,62 +124,20 @@ public class ReentrantLock01 {
      * 使用ReentrantLock的lockInterruptibly方法，获取锁标记的时候，如果需要阻塞等待，可以被打断。
      */
     void m3() {
+        boolean interruptFlag = false;
         try {
-            lock.lockInterruptibly(); // 可尝试打断，阻塞等待锁。可以被其他的线程打断阻塞状态
+            // 阻塞等待锁。可以被其他线程打断阻塞状态
+            lock.lockInterruptibly();
             System.out.println("m2() method");
         } catch (InterruptedException e) {
-            System.out.println("m2() method interrupted");
+            interruptFlag = true;
+            System.out.println("m2() interrupted");
         } finally {
-            try {
+            if (!interruptFlag) {
+                System.out.println("m2() unlock");
                 lock.unlock();
-            } catch (Exception e) {
             }
         }
-    }
-
-    @Test
-    public void tryLock01() {
-        final ReentrantLock01 t = new ReentrantLock01();
-        new Thread(() -> t.m1()).start();
-
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-        }
-
-        new Thread(() -> t.m2()).start();
-    }
-
-    @Test
-    public void lockInterruptibly() {
-        final ReentrantLock01 t = new ReentrantLock01();
-        new Thread(() -> t.m1()).start();
-
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-        }
-
-        Thread t2 = new Thread(() -> t.m3());
-        t2.start();
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-        }
-        t2.interrupt();// 打断线程休眠。非正常结束阻塞状态的线程，都会抛出异常。
-    }
-
-    /**
-     * 公平锁
-     */
-    public void fairLock() {
-        FairLock01 t = new FairLock01();
-        // TestSync t = new TestSync();
-        Thread t1 = new Thread(t);
-        Thread t2 = new Thread(t);
-        // 一般两线程交替执行
-        t1.start();
-        t2.start();
     }
 }
 
@@ -140,7 +146,7 @@ class FairLock01 implements Runnable {
     private static ReentrantLock lock = new ReentrantLock(true);
 
     public void run() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 50; i++) {
             lock.lock();
             try {
                 System.out.println(Thread.currentThread().getName() + " get lock");
@@ -149,15 +155,17 @@ class FairLock01 implements Runnable {
             }
         }
     }
-
 }
 
 class TestSync implements Runnable {
+    // 定义一个非公平锁
+    private static ReentrantLock lock = new ReentrantLock();
+
     public void run() {
-        for (int i = 0; i < 5; i++) {
-            synchronized (this) {
-                System.out.println(Thread.currentThread().getName() + " get lock in TestSync");
-            }
+        for (int i = 0; i < 100; i++) {
+            lock.lock();
+            System.out.println(Thread.currentThread().getName() + " get lock");
+            lock.unlock();
         }
     }
 }

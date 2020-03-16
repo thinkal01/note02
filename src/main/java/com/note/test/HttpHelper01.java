@@ -1,6 +1,7 @@
 package com.note.test;
 
 import com.alibaba.fastjson.JSON;
+import io.netty.handler.codec.http.HttpMethod;
 import org.apache.commons.codec.binary.Base64;
 import org.junit.Test;
 
@@ -16,6 +17,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HttpHelper01 {
+    @Test
+    public void test02() {
+        // POST
+        System.out.println(HttpMethod.POST.name());
+    }
 
     /*
     示例

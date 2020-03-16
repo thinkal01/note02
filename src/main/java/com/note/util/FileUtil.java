@@ -2,13 +2,16 @@ package com.note.util;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
+import org.junit.rules.Stopwatch;
 
 import javax.swing.filechooser.FileFilter;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.rmi.dgc.Lease;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * 此类中封装一些常用的文件操作。
@@ -51,6 +54,8 @@ public class FileUtil {
             System.err.println("touch failed: " + file.getName());
         }
     }
+
+
 
     /**
      * 修改文件的最后访问时间。

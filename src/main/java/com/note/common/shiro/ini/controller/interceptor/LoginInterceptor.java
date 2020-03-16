@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 public class LoginInterceptor implements HandlerInterceptor {
     // 在进入controller方法之前执行
@@ -53,3 +54,4 @@ public class LoginInterceptor implements HandlerInterceptor {
     }
 
 }
+

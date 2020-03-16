@@ -1,41 +1,19 @@
 package com.note.test;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.note.util.CommonUtil;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.spi.inject.Inject;
-import org.apache.log4j.lf5.viewer.configure.ConfigurationManager;
-import org.apache.poi.util.StringUtil;
-import org.hibernate.engine.spi.FilterDefinition;
-import org.hyperic.sigar.cmd.Route;
+import org.apache.lucene.store.RateLimiter;
 import org.junit.Test;
-import org.junit.rules.Stopwatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.ApplicationEventPublisherAware;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.event.EventListener;
-import org.springframework.core.annotation.AnnotationAwareOrderComparator;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import sun.plugin2.main.server.HeartbeatThread;
 
-import javax.ws.rs.core.MediaType;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.URI;
-import java.util.Collection;
-import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class Test02 {
@@ -75,4 +53,3 @@ public class Test02 {
 
 
 }
-
