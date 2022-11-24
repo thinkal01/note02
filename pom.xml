@@ -33,7 +33,7 @@
         <!--<lucene-analyzers.version>4.10.4</lucene-analyzers.version>-->
         <solrj.version>4.10.3</solrj.version>
         <ehcache.version>2.10.2</ehcache.version>
-        <hibernate.version>5.2.10.Final</hibernate.version>
+        <hibernate.version>5.3.20.Final</hibernate.version>
         <hibernate.validator.version>5.4.0.Final</hibernate.validator.version>
     </properties>
 
